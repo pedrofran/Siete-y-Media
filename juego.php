@@ -46,7 +46,7 @@
                     break;
             }
         }
-
+        //Valor de la carta
         public function valor(Type $var = null)
         {
             if($this->numero <= 7){
@@ -58,20 +58,23 @@
     }
     class Baraja
     {
+        // Declaración de una propiedad
         private $cartas = array();
         private $posBaraja;
-
+        
+        //constructor
         public function __construct() {
             $this->posBaraja = 0;
             $this->crearBaraja();
             $this->barajar();
         }
-
+        //Funcion para usar la baraja desde 0
         public function reiniciarBaraja(){
         $this->posBaraja = 0;
         $this->barajar();
         }
         
+        //Creadora de baraja
         private function crearBaraja(){
             for ($i=0;$i<4;$i++){
                 for($j=1;$j<=10;$j++){
@@ -80,22 +83,25 @@
                 }
             }
         }
-
+        
+        //barajar
         private function barajar(Type $var = null)
         {
             $index = count($this->cartas);
             while (0 !== $index) {
 
-                // Pick a remaining element...
+                // Toma un index aleatorio
                 $randomIndex = rand(0,39);
                 $index -= 1;
             
-                // And swap it with the current element.
+                // Y lo cambia el index aleatorio por la posicion actual que desciende una a una
                 $valorTemporal = $this->cartas[$index];
                 $this->cartas[$index] = $this->cartas[$randomIndex];
                 $this->cartas[$randomIndex] = $valorTemporal;
             }
         }
+        
+        //Toma una carta de la baraja si esta vacia dice que ya no quedan cartas
         public function pedirCarta(){
             if($this->posBaraja > 39){
                 echo "ya no quedan cartas";
